@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="39edd10e-b234-4369-b993-d00ad90dc7f5" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/ci.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/omniparserlegacy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/fileformat/delimited/.snapshots/TestValidateSchema-success_1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/fileformat/delimited/.snapshots/TestValidateSchema-success_2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/fileformat/delimited/decl.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/fileformat/delimited/decl_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/fileformat/delimited/format.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/fileformat/delimited/format_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/fileformat/delimited/reader.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/fileformat/delimited/reader_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/fileformat/fileformat.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/handler.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/handler_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/ingester.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/ingester_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/samples/testCommon.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/.snapshots/TestMarshalDecl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/.snapshots/TestMarshalDeclWithParentAndChildren" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/.snapshots/TestValidateTransformDeclarations-success" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/decl.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/decl_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/invokeCustomFunc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/invokeCustomFunc_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/parse.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/parse_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/validate.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/transform/validate_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/validation/csvFileDeclaration.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/validation/jsonschemas/csv_file_declaration.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/validation/jsonschemas/gen.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/validation/jsonschemas/transform_declarations.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/validation/jsonvalidate.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/validation/jsonvalidate_test.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/omniv20/validation/transformDeclarations.go" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" path="$USER_HOME$/.gvm/gos/go1.14.2" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+    <option name="urls">
+      <list>
+        <option value="file://$USER_HOME$/.gvm/pkgsets/go1.14.2/global" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1isXioDiacIDkMDjQl54KH5A5Wk" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="configurable.Global.GOPATH.is.expanded" value="true" />
+    <property name="configurable.Module.GOPATH.is.expanded" value="false" />
+    <property name="configurable.Project.GOPATH.is.expanded" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="100" y="123" width="1240" height="613" key="DiffContextDialog" timestamp="1602705229367">
+      <screen x="0" y="23" width="1440" height="813" />
+    </state>
+    <state x="100" y="123" width="1240" height="613" key="DiffContextDialog/0.23.1440.813@0.23.1440.813" timestamp="1602705229367" />
+    <state x="372" y="214" key="EditFileWatcherDialog" timestamp="1602697436605">
+      <screen x="0" y="23" width="1440" height="813" />
+    </state>
+    <state x="372" y="214" key="EditFileWatcherDialog/0.23.1440.813@0.23.1440.813" timestamp="1602697436605" />
+    <state x="221" y="68" key="SettingsEditor" timestamp="1602697437403">
+      <screen x="0" y="23" width="1440" height="813" />
+    </state>
+    <state x="221" y="68" key="SettingsEditor/0.23.1440.813@0.23.1440.813" timestamp="1602697437403" />
+    <state x="421" y="184" width="598" height="490" key="find.popup" timestamp="1602699122031">
+      <screen x="0" y="23" width="1440" height="813" />
+    </state>
+    <state x="421" y="184" width="598" height="490" key="find.popup/0.23.1440.813@0.23.1440.813" timestamp="1602699122031" />
+    <state x="385" y="160" width="670" height="676" key="search.everywhere.popup" timestamp="1602705689404">
+      <screen x="0" y="23" width="1440" height="813" />
+    </state>
+    <state x="385" y="160" width="670" height="676" key="search.everywhere.popup/0.23.1440.813@0.23.1440.813" timestamp="1602705689404" />
+  </component>
+</project>
