@@ -277,6 +277,7 @@ func TestReplace(t *testing.T) {
 	// invalid regex
 	s, err = Replace(nil, "abc", "[", replaceStr)
 	assert.Error(t, err)
+	assert.Equal(t, "", s)
 }
 
 func TestRetrieveBySplit(t *testing.T) {
@@ -380,6 +381,120 @@ func TestRowSkip(t *testing.T) {
 	assert.Error(t, err)
 	// but not the row skip err
 	assert.False(t, errs.IsNonErrorRecordSkipped(err))
+	assert.Equal(t, "", s)
+}
+
+func TestRSubstring(t *testing.T) {
+	tests := []struct {
+		name       string
+		str        string
+		startIndex string
+		lengthStr  string
+		expected   string
+		err        string
+	}{
+		{
+			name:       "invalid startIndex",
+			str:        "123456",
+			startIndex: "abc",
+			lengthStr:  "5",
+			expected:   "",
+			err:        `unable to convert start index 'abc' into int, err: strconv.Atoi: parsing "abc": invalid syntax`,
+		},
+		{
+			name:       "empty str",
+			str:        "",
+			startIndex: "0",
+			lengthStr:  "0",
+			expected:   "",
+			err:        "",
+		},
+		{
+			name:       "0 startIndex",
+			str:        "123456",
+			startIndex: "0",
+			lengthStr:  "4",
+			expected:   "3456",
+			err:        "",
+		},
+		{
+			name:       "lengthStr is 1",
+			str:        "123456",
+			startIndex: "4",
+			lengthStr:  "1",
+			expected:   "2",
+			err:        "",
+		},
+		{
+			name:       "lengthStr is 0",
+			str:        "123456",
+			startIndex: "1",
+			lengthStr:  "0",
+			expected:   "",
+			err:        "",
+		},
+		{
+			name:       "lengthStr is -1",
+			str:        "123456",
+			startIndex: "3",
+			lengthStr:  "-1",
+			expected:   "123",
+			err:        "",
+		},
+		{
+			name:       "substring starts at the end",
+			str:        "123456",
+			startIndex: "0",
+			lengthStr:  "4",
+			expected:   "3456",
+			err:        "",
+		},
+		{
+			name:       "substring ends at the beginning",
+			str:        "天地玄黄宇宙洪荒",
+			startIndex: "4",
+			lengthStr:  "4",
+			expected:   "天地玄黄",
+			err:        "",
+		},
+		{
+			name:       "substring starts at the beginning",
+			str:        "123456",
+			startIndex: "6",
+			lengthStr:  "0",
+			expected:   "",
+			err:        "",
+		},
+		{
+			name:       "substring is the whole string",
+			str:        "123456",
+			startIndex: "0",
+			lengthStr:  "6",
+			expected:   "123456",
+			err:        "",
+		},
+		{
+			name:       "non-ASCII string",
+			str:        "ü:ü",
+			startIndex: "1",
+			lengthStr:  "2",
+			expected:   "ü:",
+			err:        "",
+		},
+	}
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			result, err := RSubstring(nil, test.str, test.startIndex, test.lengthStr)
+			if test.err == "" {
+				assert.NoError(t, err)
+				assert.Equal(t, test.expected, result)
+			} else {
+				assert.Error(t, err)
+				assert.Equal(t, test.err, err.Error())
+				assert.Equal(t, "", result)
+			}
+		})
+	}
 }
 
 func TestSplitIntoJSONArray(t *testing.T) {
@@ -635,10 +750,10 @@ func TestSubstring(t *testing.T) {
 		},
 		{
 			name:       "substring ends at the end",
-			str:        "123456",
-			startIndex: "2",
+			str:        "天地玄黄宇宙洪荒",
+			startIndex: "4",
 			lengthStr:  "4",
-			expected:   "3456",
+			expected:   "宇宙洪荒",
 			err:        "",
 		},
 		{

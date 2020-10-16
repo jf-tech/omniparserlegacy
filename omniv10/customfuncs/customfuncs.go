@@ -31,12 +31,12 @@ var OmniV10OnlyCustomFuncs = map[string]customfuncs.CustomFuncType{
 	"replace":                     Replace,
 	"retrieveBySplit":             RetrieveBySplit,
 	"rowSkip":                     RowSkip,
-	//"rsubstring":         rsubstring,
-	"splitIntoJsonArray": SplitIntoJSONArray,
-	"strEqualAny":        StrEqualAny,
-	"substring":          Substring,
-	"switch":             SwitchFunc,
-	"switchByPattern":    SwitchByPattern,
+	"rsubstring":                  RSubstring,
+	"splitIntoJsonArray":          SplitIntoJSONArray,
+	"strEqualAny":                 StrEqualAny,
+	"substring":                   Substring,
+	"switch":                      SwitchFunc,
+	"switchByPattern":             SwitchByPattern,
 }
 
 // OmniV10CustomFuncs contains all custom funcs supported by omniparser '1.0'.
@@ -147,6 +147,29 @@ func RowSkip(_ *transformctx.Ctx, value, skipRegex string) (string, error) {
 		return "", errs.NonErrorRecordSkipped(value)
 	}
 	return "", nil
+}
+
+// RSubstring extracts a part of a 'str' from 'startIndex' from the right end of the string with length equal
+// to 'lengthStr'. 'startIndex' must be [0, len). 'lengthStr' can be '-1', in which case RSubstring will return
+// all the remaining characters (towards the head) of 'str' starting from 'startIndex' from the right. Or
+// 'lengthStr' can be >= 0, in which case RSubstring will only return 'lengthStr' number characters of 'str'
+// starting from 'startIndex' from the right.
+func RSubstring(ctx *transformctx.Ctx, str, startIndex, lengthStr string) (string, error) {
+	// not the most efficient way of doing thing, but again, perf isn't the most critical here so keep it
+	// simple.
+	reverse := func(r []rune) []rune {
+		l := len(r)
+		for i := 0; i < l/2; i++ {
+			r[i], r[l-i-1] = r[l-i-1], r[i]
+		}
+		return r
+	}
+	r := reverse([]rune(str))
+	s, err := Substring(ctx, string(r), startIndex, lengthStr)
+	if err != nil {
+		return "", err
+	}
+	return string(reverse([]rune(s))), nil
 }
 
 // SplitIntoJSONArray splits an 's' by 'sep' and returns the resulting array of parts in a JSON string.
