@@ -9,6 +9,8 @@ import (
 	"github.com/jf-tech/omniparser/customfuncs"
 	"github.com/jf-tech/omniparser/idr"
 	"github.com/jf-tech/omniparser/transformctx"
+
+	v20 "github.com/jf-tech/omniparserlegacy/omniv20/customfuncs"
 )
 
 func testParseCtx() *parseCtx {
@@ -23,7 +25,7 @@ func testParseCtx() *parseCtx {
 					return "test", nil
 				},
 			},
-			customfuncs.BuiltinCustomFuncs))
+			v20.OmniV20CustomFuncs))
 	// by default disabling transform cache in test because vast majority of
 	// test cases don't have their decls' hash computed.
 	ctx.disableTransformCache = true

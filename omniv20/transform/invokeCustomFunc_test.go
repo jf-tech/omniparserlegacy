@@ -37,6 +37,7 @@ func TestInvokeCustomFunc_Success(t *testing.T) {
 				// arg to a variadic custom func.
 				{XPath: strs.StrPtr("*"), kind: KindField},
 				{Const: strs.StrPtr("'"), kind: KindConst},
+
 				{
 					CustomFunc: &CustomFuncDecl{
 						Name: "upper",

@@ -3,6 +3,7 @@ package validation
 import (
 	"testing"
 
+	"github.com/jf-tech/omniparser/validation"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -62,7 +63,7 @@ func TestSchemaValidate(t *testing.T) {
 		},
 	} {
 		t.Run(test.name, func(t *testing.T) {
-			err := SchemaValidate("test-schema", []byte(test.schemaContent), test.jsonSchema)
+			err := validation.SchemaValidate("test-schema", []byte(test.schemaContent), test.jsonSchema)
 			if test.expectedErr != "" {
 				assert.Error(t, err)
 				assert.Equal(t, test.expectedErr, err.Error())

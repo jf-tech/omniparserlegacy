@@ -5,8 +5,8 @@ import (
 	"io"
 	"testing"
 
-	"github.com/jf-tech/omniparser/handlers"
 	"github.com/jf-tech/omniparser/idr"
+	"github.com/jf-tech/omniparser/schemahandler"
 	"github.com/jf-tech/omniparser/transformctx"
 	"github.com/stretchr/testify/assert"
 
@@ -18,8 +18,8 @@ import (
 )
 
 func TestCreateHandler_VersionNotSupported(t *testing.T) {
-	p, err := CreateHandler(
-		&handlers.HandlerCtx{
+	p, err := CreateSchemaHandler(
+		&schemahandler.CreateCtx{
 			Header: header.Header{
 				ParserSettings: header.ParserSettings{
 					Version: "12345",
@@ -32,8 +32,8 @@ func TestCreateHandler_VersionNotSupported(t *testing.T) {
 }
 
 func TestCreateHandler_FormatNotSupported(t *testing.T) {
-	p, err := CreateHandler(
-		&handlers.HandlerCtx{
+	p, err := CreateSchemaHandler(
+		&schemahandler.CreateCtx{
 			Header: header.Header{
 				ParserSettings: header.ParserSettings{
 					Version:        version,
@@ -48,8 +48,8 @@ func TestCreateHandler_FormatNotSupported(t *testing.T) {
 }
 
 func TestCreateHandler_TransformDeclarationsJSONValidationFailed(t *testing.T) {
-	p, err := CreateHandler(
-		&handlers.HandlerCtx{
+	p, err := CreateSchemaHandler(
+		&schemahandler.CreateCtx{
 			Name: "test-schema",
 			Header: header.Header{
 				ParserSettings: header.ParserSettings{
@@ -67,8 +67,8 @@ func TestCreateHandler_TransformDeclarationsJSONValidationFailed(t *testing.T) {
 }
 
 func TestCreateHandler_TransformDeclarationsInCodeValidationFailed(t *testing.T) {
-	p, err := CreateHandler(
-		&handlers.HandlerCtx{
+	p, err := CreateSchemaHandler(
+		&schemahandler.CreateCtx{
 			Name: "test-schema",
 			Header: header.Header{
 				ParserSettings: header.ParserSettings{
@@ -91,8 +91,8 @@ func TestCreateHandler_TransformDeclarationsInCodeValidationFailed(t *testing.T)
 }
 
 func TestCreateHandler_FileFormatValidationFailed(t *testing.T) {
-	p, err := CreateHandler(
-		&handlers.HandlerCtx{
+	p, err := CreateSchemaHandler(
+		&schemahandler.CreateCtx{
 			Name: "test-schema",
 			Header: header.Header{
 				ParserSettings: header.ParserSettings{
@@ -120,8 +120,8 @@ func TestCreateHandler_FileFormatValidationFailed(t *testing.T) {
 }
 
 func TestCreateHandler_Success(t *testing.T) {
-	h, err := CreateHandler(
-		&handlers.HandlerCtx{
+	h, err := CreateSchemaHandler(
+		&schemahandler.CreateCtx{
 			Name: "test-schema",
 			Header: header.Header{
 				ParserSettings: header.ParserSettings{
@@ -180,7 +180,7 @@ func (r testFormatReader) FmtErr(string, ...interface{}) error { panic("implemen
 
 func TestNewIngester_Failure(t *testing.T) {
 	h := &schemaHandler{
-		ctx:        &handlers.HandlerCtx{},
+		ctx:        &schemahandler.CreateCtx{},
 		fileFormat: &testFileFormat{createFormatReaderErr: errors.New("create reader failure")},
 	}
 	ingester, err := h.NewIngester(&transformctx.Ctx{}, nil)

@@ -244,8 +244,7 @@ func (p *parseCtx) parseField(n *idr.Node, decl *Decl) (interface{}, error) {
 	if decl.resultType() == ResultTypeObject && n.Type == idr.ElementNode {
 		// When a field's result_type is marked "object", we'll simply copy the selected
 		// node and all its children over directly.
-		// TODO get back to strict back-compat omni.2.0 mode by not doing JSONType specific conversion: needs idr change
-		return normalizeAndReturnValue(decl, idr.J2NodeToInterface(n))
+		return normalizeAndReturnValue(decl, idr.J2NodeToInterface(n, false))
 	}
 	return normalizeAndReturnValue(decl, n.InnerText())
 }
