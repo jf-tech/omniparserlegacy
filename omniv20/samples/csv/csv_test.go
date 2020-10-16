@@ -7,10 +7,11 @@ import (
 
 	"github.com/bradleyjkemp/cupaloy"
 	"github.com/jf-tech/go-corelib/jsons"
-
 	"github.com/jf-tech/omniparser"
 	"github.com/jf-tech/omniparser/transformctx"
 
+	"github.com/jf-tech/omniparserlegacy/omniv20"
+	v20 "github.com/jf-tech/omniparserlegacy/omniv20/customfuncs"
 	"github.com/jf-tech/omniparserlegacy/omniv20/samples"
 )
 
@@ -29,7 +30,11 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	benchSchema, err = omniparser.NewSchema("bench", bytes.NewReader(schema))
+	benchSchema, err = omniparser.NewSchema("bench", bytes.NewReader(schema),
+		omniparser.Extension{
+			CreateSchemaHandler: omniv20.CreateSchemaHandler,
+			CustomFuncs:         v20.OmniV20CustomFuncs,
+		})
 	if err != nil {
 		panic(err)
 	}

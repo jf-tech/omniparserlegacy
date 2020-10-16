@@ -12,6 +12,7 @@ import (
 	"github.com/jf-tech/omniparser/transformctx"
 
 	"github.com/jf-tech/omniparserlegacy/omniv20"
+	v20 "github.com/jf-tech/omniparserlegacy/omniv20/customfuncs"
 )
 
 // SampleTestCommon is a test helper for sample tests
@@ -30,7 +31,8 @@ func SampleTestCommon(t *testing.T, schemaFile, inputFile string) string {
 		schemaFileBaseName,
 		schemaFileReader,
 		omniparser.Extension{
-			CreateHandler: omniv20.CreateHandler,
+			CreateSchemaHandler: omniv20.CreateSchemaHandler,
+			CustomFuncs:         v20.OmniV20CustomFuncs,
 		})
 	assert.NoError(t, err)
 	transform, err := schema.NewTransform(inputFileBaseName, inputFileReader, &transformctx.Ctx{})

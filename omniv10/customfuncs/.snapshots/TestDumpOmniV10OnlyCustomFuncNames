@@ -1,0 +1,19 @@
+[
+	"containsPattern",
+	"dateTimeToRfc3339",
+	"dateTimeWithLayoutToRfc3339",
+	"epochToDateTimeRfc3339",
+	"eval",
+	"external",
+	"floor",
+	"ifElse",
+	"isEmpty",
+	"replace",
+	"retrieveBySplit",
+	"rowSkip",
+	"splitIntoJsonArray",
+	"strEqualAny",
+	"substring",
+	"switch",
+	"switchByPattern"
+]

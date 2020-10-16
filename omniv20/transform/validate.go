@@ -21,7 +21,6 @@ type validateCtx struct {
 // ValidateTransformDeclarations validates `transform_declarations` section of an omni schema and returns
 // the `FINAL_OUTPUT` corresponding Decl.
 func ValidateTransformDeclarations(schemaContent []byte, customFuncs customfuncs.CustomFuncs) (*Decl, error) {
-
 	var ctx validateCtx
 	// We did json schema validation earlier, so this unmarshal guarantees to succeed.
 	_ = json.Unmarshal(schemaContent, &ctx)

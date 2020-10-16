@@ -5,27 +5,28 @@ import (
 	"io"
 
 	"github.com/jf-tech/omniparser/errs"
-	"github.com/jf-tech/omniparser/handlers"
+	"github.com/jf-tech/omniparser/schemahandler"
+	"github.com/jf-tech/omniparser/validation"
 
 	"github.com/jf-tech/omniparser/transformctx"
 
 	"github.com/jf-tech/omniparserlegacy/omniv20/fileformat"
 	"github.com/jf-tech/omniparserlegacy/omniv20/fileformat/delimited"
 	"github.com/jf-tech/omniparserlegacy/omniv20/transform"
-	"github.com/jf-tech/omniparserlegacy/omniv20/validation"
+	v20 "github.com/jf-tech/omniparserlegacy/omniv20/validation"
 )
 
 const (
 	version = "omni.2.0"
 )
 
-// CreateHandler parses, validates and creates an omni-schema based handler.
-func CreateHandler(ctx *handlers.HandlerCtx) (handlers.SchemaHandler, error) {
+// CreateSchemaHandler parses, validates and creates an omni-schema based handler.
+func CreateSchemaHandler(ctx *schemahandler.CreateCtx) (schemahandler.SchemaHandler, error) {
 	if ctx.Header.ParserSettings.Version != version {
 		return nil, errs.ErrSchemaNotSupported
 	}
 	// First do a `transform_declarations` json schema validation
-	err := validation.SchemaValidate(ctx.Name, ctx.Content, validation.JSONSchemaTransformDeclarations)
+	err := validation.SchemaValidate(ctx.Name, ctx.Content, v20.JSONSchemaTransformDeclarations)
 	if err != nil {
 		// err is already context formatted.
 		return nil, err
@@ -58,7 +59,7 @@ func CreateHandler(ctx *handlers.HandlerCtx) (handlers.SchemaHandler, error) {
 	return nil, errs.ErrSchemaNotSupported
 }
 
-func fileFormats(ctx *handlers.HandlerCtx) []fileformat.FileFormat {
+func fileFormats(ctx *schemahandler.CreateCtx) []fileformat.FileFormat {
 	return []fileformat.FileFormat{
 		delimited.NewDelimitedFileFormat(ctx.Name),
 		// TODO more built-in omni.2.0 file formats to come.
@@ -66,13 +67,13 @@ func fileFormats(ctx *handlers.HandlerCtx) []fileformat.FileFormat {
 }
 
 type schemaHandler struct {
-	ctx             *handlers.HandlerCtx
+	ctx             *schemahandler.CreateCtx
 	fileFormat      fileformat.FileFormat
 	formatRuntime   interface{}
 	finalOutputDecl *transform.Decl
 }
 
-func (h *schemaHandler) NewIngester(ctx *transformctx.Ctx, input io.Reader) (handlers.Ingester, error) {
+func (h *schemaHandler) NewIngester(ctx *transformctx.Ctx, input io.Reader) (schemahandler.Ingester, error) {
 	reader, err := h.fileFormat.CreateFormatReader(ctx.InputName, input, h.formatRuntime)
 	if err != nil {
 		return nil, err

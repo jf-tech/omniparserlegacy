@@ -8,12 +8,13 @@ import (
 
 	"github.com/jf-tech/go-corelib/caches"
 	"github.com/jf-tech/go-corelib/strs"
+	"github.com/jf-tech/omniparser/validation"
 
 	"github.com/jf-tech/omniparser/errs"
 
 	"github.com/jf-tech/omniparserlegacy/omniv20/fileformat"
 	"github.com/jf-tech/omniparserlegacy/omniv20/transform"
-	"github.com/jf-tech/omniparserlegacy/omniv20/validation"
+	v20 "github.com/jf-tech/omniparserlegacy/omniv20/validation"
 )
 
 const (
@@ -39,7 +40,7 @@ func (f *delimitedFileFormat) ValidateSchema(
 	if format != fileFormat {
 		return nil, errs.ErrSchemaNotSupported
 	}
-	err := validation.SchemaValidate(f.schemaName, schemaContent, validation.JSONSchemaCSVFileDeclaration)
+	err := validation.SchemaValidate(f.schemaName, schemaContent, v20.JSONSchemaCSVFileDeclaration)
 	if err != nil {
 		// err is already context formatted.
 		return nil, err
