@@ -1,0 +1,29 @@
+{
+	"Children": [
+		{
+			"Children": null,
+			"Data": "data1",
+			"FirstChild": null,
+			"FormatSpecific": {
+				"NamespacePrefix": "",
+				"NamespaceURI": ""
+			},
+			"LastChild": null,
+			"NextSibling": null,
+			"Parent": "(ElementNode B)",
+			"PrevSibling": null,
+			"Type": "TextNode"
+		}
+	],
+	"Data": "B",
+	"FirstChild": "(TextNode 'data1')",
+	"FormatSpecific": {
+		"NamespacePrefix": "",
+		"NamespaceURI": ""
+	},
+	"LastChild": "(TextNode 'data1')",
+	"NextSibling": null,
+	"Parent": "(ElementNode A)",
+	"PrevSibling": null,
+	"Type": "ElementNode"
+}

@@ -1,64 +1,32 @@
 package csv
 
 import (
-	"bytes"
-	"io/ioutil"
 	"testing"
 
 	"github.com/bradleyjkemp/cupaloy"
 	"github.com/jf-tech/go-corelib/jsons"
-	"github.com/jf-tech/omniparser"
-	"github.com/jf-tech/omniparser/transformctx"
 
-	"github.com/jf-tech/omniparserlegacy/omniv20"
-	v20 "github.com/jf-tech/omniparserlegacy/omniv20/customfuncs"
 	"github.com/jf-tech/omniparserlegacy/omniv20/samples"
 )
 
-func Test1_Weather_Data_CSV(t *testing.T) {
-	cupaloy.SnapshotT(t, jsons.BPJ(samples.SampleTestCommon(
-		t, "./1_weather_data_csv.schema.json", "./1_weather_data_csv.input.csv")))
+var csvSample1Externals = map[string]string{
+	"source_info": "wiki",
+	"location":    "india",
 }
 
-var benchSchemaFile = "./1_weather_data_csv.schema.json"
-var benchInputFile = "./1_weather_data_csv.input.csv"
-var benchSchema omniparser.Schema
-var benchInput []byte
-
-func init() {
-	schema, err := ioutil.ReadFile(benchSchemaFile)
-	if err != nil {
-		panic(err)
-	}
-	benchSchema, err = omniparser.NewSchema("bench", bytes.NewReader(schema),
-		omniparser.Extension{
-			CreateSchemaHandler: omniv20.CreateSchemaHandler,
-			CustomFuncs:         v20.OmniV20CustomFuncs,
-		})
-	if err != nil {
-		panic(err)
-	}
-	benchInput, err = ioutil.ReadFile(benchInputFile)
-	if err != nil {
-		panic(err)
-	}
+func TestCSVSample1(t *testing.T) {
+	cupaloy.SnapshotT(t, jsons.BPJ(
+		samples.SampleTestCommon(
+			t, "./csv_sample1_schema.json", "./csv_sample1.csv", csvSample1Externals)))
 }
+
+var bench = samples.NewBench("./csv_sample1_schema.json", "./csv_sample1.csv", csvSample1Externals)
 
 // go test -bench=. -benchmem -benchtime=30s
-// Benchmark1_Weather_Data_CSV-8   	  148292	    240290 ns/op	   78183 B/op	    1622 allocs/op
+// BenchmarkCSVSample1-8   	  148292	    240290 ns/op	   78183 B/op	    1622 allocs/op
 
-func Benchmark1_Weather_Data_CSV(b *testing.B) {
+func BenchmarkCSVSample1(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		transform, err := benchSchema.NewTransform(
-			"bench", bytes.NewReader(benchInput), &transformctx.Ctx{})
-		if err != nil {
-			b.FailNow()
-		}
-		for transform.Next() {
-			_, err := transform.Read()
-			if err != nil {
-				b.FailNow()
-			}
-		}
+		bench.RunOneIteration(b)
 	}
 }
