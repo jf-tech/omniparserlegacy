@@ -1,0 +1,23 @@
+{
+	"Children": [
+		{
+			"Children": null,
+			"Data": "B1",
+			"FirstChild": null,
+			"FormatSpecific": 16,
+			"LastChild": null,
+			"NextSibling": null,
+			"Parent": "(ElementNode )",
+			"PrevSibling": null,
+			"Type": "TextNode"
+		}
+	],
+	"Data": "",
+	"FirstChild": "(TextNode 'B1')",
+	"FormatSpecific": 8,
+	"LastChild": "(TextNode 'B1')",
+	"NextSibling": null,
+	"Parent": "(DocumentNode)",
+	"PrevSibling": null,
+	"Type": "ElementNode"
+}

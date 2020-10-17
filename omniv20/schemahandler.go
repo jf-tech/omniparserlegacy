@@ -12,6 +12,8 @@ import (
 
 	"github.com/jf-tech/omniparserlegacy/omniv20/fileformat"
 	"github.com/jf-tech/omniparserlegacy/omniv20/fileformat/delimited"
+	"github.com/jf-tech/omniparserlegacy/omniv20/fileformat/json"
+	"github.com/jf-tech/omniparserlegacy/omniv20/fileformat/xml"
 	"github.com/jf-tech/omniparserlegacy/omniv20/transform"
 	v20 "github.com/jf-tech/omniparserlegacy/omniv20/validation"
 )
@@ -62,6 +64,8 @@ func CreateSchemaHandler(ctx *schemahandler.CreateCtx) (schemahandler.SchemaHand
 func fileFormats(ctx *schemahandler.CreateCtx) []fileformat.FileFormat {
 	return []fileformat.FileFormat{
 		delimited.NewDelimitedFileFormat(ctx.Name),
+		json.NewJSONFileFormat(ctx.Name),
+		xml.NewXMLFileFormat(ctx.Name),
 		// TODO more built-in omni.2.0 file formats to come.
 	}
 }

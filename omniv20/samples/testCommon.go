@@ -1,6 +1,8 @@
 package samples
 
 import (
+	"bytes"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -16,7 +18,7 @@ import (
 )
 
 // SampleTestCommon is a test helper for sample tests
-func SampleTestCommon(t *testing.T, schemaFile, inputFile string) string {
+func SampleTestCommon(t *testing.T, schemaFile, inputFile string, externals map[string]string) string {
 	schemaFileBaseName := filepath.Base(schemaFile)
 	schemaFileReader, err := os.Open(schemaFile)
 	assert.NoError(t, err)
@@ -35,7 +37,10 @@ func SampleTestCommon(t *testing.T, schemaFile, inputFile string) string {
 			CustomFuncs:         v20.OmniV20CustomFuncs,
 		})
 	assert.NoError(t, err)
-	transform, err := schema.NewTransform(inputFileBaseName, inputFileReader, &transformctx.Ctx{})
+	transform, err := schema.NewTransform(
+		inputFileBaseName,
+		inputFileReader,
+		&transformctx.Ctx{ExternalProperties: externals})
 	assert.NoError(t, err)
 
 	var records []string
@@ -46,4 +51,50 @@ func SampleTestCommon(t *testing.T, schemaFile, inputFile string) string {
 	}
 
 	return "[" + strings.Join(records, ",") + "]"
+}
+
+type Bench struct {
+	schema    omniparser.Schema
+	input     []byte
+	externals map[string]string
+}
+
+func (bch *Bench) RunOneIteration(b *testing.B) {
+	transform, err := bch.schema.NewTransform(
+		"bench",
+		bytes.NewReader(bch.input),
+		&transformctx.Ctx{ExternalProperties: bch.externals})
+	if err != nil {
+		b.FailNow()
+	}
+	for transform.Next() {
+		_, err := transform.Read()
+		if err != nil {
+			b.FailNow()
+		}
+	}
+}
+
+func NewBench(schemaFile, inputFile string, externals map[string]string) *Bench {
+	schemaContent, err := ioutil.ReadFile(schemaFile)
+	if err != nil {
+		panic(err)
+	}
+	schema, err := omniparser.NewSchema("bench", bytes.NewReader(schemaContent),
+		omniparser.Extension{
+			CreateSchemaHandler: omniv20.CreateSchemaHandler,
+			CustomFuncs:         v20.OmniV20CustomFuncs,
+		})
+	if err != nil {
+		panic(err)
+	}
+	input, err := ioutil.ReadFile(inputFile)
+	if err != nil {
+		panic(err)
+	}
+	return &Bench{
+		schema:    schema,
+		input:     input,
+		externals: externals,
+	}
 }
