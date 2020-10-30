@@ -1,0 +1,140 @@
+{
+    "parser_settings": {
+        "version": "omni.2.0",
+        "file_format_type": "edi"
+    },
+    "file_declaration": {
+        "element_delimiter": "+",
+        "component_delimiter": ":",
+        "segment_delimiter": "'",
+        "segment_declarations": [
+            {
+                "name": "UNA",
+                "child_segments": [
+                    { "name": "UNB" },
+                    {
+                        "name": "SG0", "type": "segment_group", "min": 0, "max": -1,
+                        "child_segments": [
+                            { "name": "UNH" },
+                            { "name": "BGM" },
+                            { "name": "DTM", "min": 0 },
+                            {
+                                "name": "SG1_1", "type": "segment_group", "min": 0,
+                                "child_segments": [
+                                    { "name": "NAD" },
+                                    {
+                                        "name": "SG2", "type": "segment_group", "min": 0,
+                                        "child_segments": [
+                                            { "name": "CTA" },
+                                            { "name": "COM" }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "name": "SG1_2", "type": "segment_group", "min": 0,
+                                "child_segments": [
+                                    { "name": "NAD" }
+                                ]
+                            },
+                            {
+                                "name": "SG4", "type": "segment_group", "is_target": true, "min": 0, "max": -1,
+                                "child_segments": [
+                                    {
+                                        "name": "CNI",
+                                        "elements": [
+                                            { "name": "tracking_number", "index": 2 }
+                                        ]
+                                    },
+                                    {
+                                        "name": "SG5", "type": "segment_group", "max": -1,
+                                        "child_segments": [
+                                            { "name": "STS" },
+                                            { "name": "RFF", "min": 0 },
+                                            {
+                                                "name": "DTM", "min": 0,
+                                                "elements": [
+                                                    { "name": "event_datetime", "index": 1, "component_index": 2 },
+                                                    { "name": "event_datetime_format_indicator", "index": 1, "component_index": 3 }
+                                                ]
+                                            },
+                                            { "name": "FTX", "min": 0 },
+                                            {
+                                                "name": "SG6", "type": "segment_group", "min": 0,
+                                                "child_segments": [
+                                                    { "name": "NAD" }
+                                                ]
+                                            },
+                                            {
+                                                "name": "LOC", "min": 0,
+                                                "elements": [
+                                                    { "name": "city", "index": 2, "component_index": 4, "empty_if_missing": true },
+                                                    { "name": "country_code", "index": 3 }
+                                                ]
+                                            },
+                                            {
+                                                "name": "SG14", "type": "segment_group", "min": 0,
+                                                "child_segments": [
+                                                    { "name": "GID" },
+                                                    {
+                                                        "name": "SG17", "type": "segment_group", "min": 0, "max": -1,
+                                                        "child_segments": [
+                                                            { "name": "PCI" },
+                                                            { "name": "GIN", "min": 0 }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            { "name": "UNT" }
+                        ]
+                    },
+                    { "name": "UNZ" }
+                ]
+            }
+        ]
+    },
+    "transform_declarations": {
+        "event_date_template": { "custom_func": {
+            "name": "dateTimeWithLayoutToRfc3339",
+            "args": [
+                { "xpath": "DTM/event_datetime" },
+                {
+                    "custom_func": {
+                        "name": "eval",
+                        "args": [
+                            { "const": "[indicator] == '203' ? '200601021504' : '20060102150405'" },
+                            { "const": "indicator:string" },
+                            { "xpath": "DTM/event_datetime_format_indicator" }
+                        ]
+                    },
+                    "_comment": "input layout"
+                },
+                { "const": "false", "_comment": "input layout has timezone included or not" },
+                { "const": "", "_comment": "input timezone" },
+                { "const": "", "_comment": "output timezone" }
+            ]
+        }},
+        "FINAL_OUTPUT": { "xpath": ".[SG5/LOC/city != 'MOSS']", "object": {
+            "tracking_entity": { "object": {
+                "tracking_number": { "xpath": "CNI/tracking_number" },
+                "tracking_document": { "object": {
+                    "tracking_number": { "xpath": "CNI/tracking_number" }
+                }},
+                "events": { "array": [
+                    { "xpath": "SG5", "object": {
+                        "date": { "template": "event_date_template" },
+                        "date_raw": { "template": "event_date_template" },
+                        "location": { "object": {
+                            "city": { "xpath": "LOC/city" },
+                            "country": { "xpath": "LOC/country_code" }
+                        }}
+                    }}
+                ]}
+            }}
+        }}
+    }
+}
