@@ -2,6 +2,7 @@ package samples
 
 import (
 	"bytes"
+	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
@@ -44,8 +45,11 @@ func SampleTestCommon(t *testing.T, schemaFile, inputFile string, externals map[
 	assert.NoError(t, err)
 
 	var records []string
-	for transform.Next() {
+	for {
 		recordBytes, err := transform.Read()
+		if err == io.EOF {
+			break
+		}
 		assert.NoError(t, err)
 		records = append(records, string(recordBytes))
 	}
@@ -67,8 +71,11 @@ func (bch *Bench) RunOneIteration(b *testing.B) {
 	if err != nil {
 		b.FailNow()
 	}
-	for transform.Next() {
+	for {
 		_, err := transform.Read()
+		if err == io.EOF {
+			break
+		}
 		if err != nil {
 			b.FailNow()
 		}
