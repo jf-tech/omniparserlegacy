@@ -67,6 +67,8 @@ github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
 github.com/jf-tech/go-corelib v0.0.11 h1:p5bBM1vf9O2Q//f9q2UyfpWdFUG93X/tgsmKFj/klaU=
 github.com/jf-tech/go-corelib v0.0.11/go.mod h1:0+Fejzd53JtexKE5VI8I06WiBNATLIURRJgPrv4Yysg=
+github.com/jf-tech/go-corelib v0.0.13 h1:4aDwS09bdfRb/loU6Va+kvqwNJq5irR5WjKVpzJxdag=
+github.com/jf-tech/go-corelib v0.0.13/go.mod h1:0+Fejzd53JtexKE5VI8I06WiBNATLIURRJgPrv4Yysg=
 github.com/jf-tech/omniparser v0.0.0-20201102042518-0ec9a3e42003 h1:G1h/Iu/At1Y5aUb7wffq9wk2RB+1i77vjNXL2YY2Ghg=
 github.com/jf-tech/omniparser v0.0.0-20201102042518-0ec9a3e42003/go.mod h1:6H9Kl9awKD9fc2va7z3Q2634YhfG0yZ/yeHDYSvAY40=
 github.com/jonboulle/clockwork v0.1.0/go.mod h1:Ii8DK3G1RaLaWxj9trq07+26W01tbo22gdxWY5EU2bo=

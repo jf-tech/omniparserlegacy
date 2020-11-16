@@ -9,7 +9,7 @@ require (
 	github.com/dlclark/regexp2 v1.4.0 // indirect
 	github.com/dop251/goja v0.0.0-20201008094107-f97e50db25ec // indirect
 	github.com/google/uuid v1.1.2
-	github.com/jf-tech/go-corelib v0.0.11
+	github.com/jf-tech/go-corelib v0.0.13
 	github.com/jf-tech/omniparser v0.0.0-20201102042518-0ec9a3e42003
 	github.com/stretchr/testify v1.6.1
 	github.com/xeipuuv/gojsonpointer v0.0.0-20190905194746-02993c407bfb // indirect

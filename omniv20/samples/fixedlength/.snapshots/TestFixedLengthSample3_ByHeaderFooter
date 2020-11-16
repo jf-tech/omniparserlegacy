@@ -1,0 +1,66 @@
+[
+	{
+		"carrier": "postnl",
+		"events": [
+			{
+				"date": "2019-11-05T04:35:23",
+				"location": {
+					"country": "NE",
+					"zip": "0000FF"
+				}
+			}
+		],
+		"tracking_number": "3SDMNN0129791",
+		"weight": 19.78
+	},
+	{
+		"carrier": "postnl",
+		"delivery": {
+			"delivery_date": "2016-08-25T00:00:00"
+		},
+		"events": [
+			{
+				"date": "2019-11-05T03:30:00",
+				"location": {
+					"city": "'S-HERTOGENBOSCH",
+					"country": "NL",
+					"zip": "5211EK"
+				}
+			}
+		],
+		"tracking_number": "3SDMNN0129552",
+		"weight": 19.78
+	},
+	{
+		"carrier": "postnl",
+		"delivery": {
+			"delivery_date": "2016-08-25T00:00:00"
+		},
+		"events": [
+			{
+				"date": "2019-11-05T03:30:00",
+				"location": {
+					"country": "NE",
+					"zip": "0000FF"
+				}
+			}
+		],
+		"tracking_number": "3SDMNN0129857",
+		"weight": 197.8
+	},
+	{
+		"carrier": "postnl",
+		"events": [
+			{
+				"date": "2019-11-05T03:30:00",
+				"location": {
+					"city": "ROTTERDAM",
+					"country": "NL",
+					"zip": "3043ME"
+				}
+			}
+		],
+		"tracking_number": "3SDMNN0129501",
+		"weight": 0
+	}
+]
