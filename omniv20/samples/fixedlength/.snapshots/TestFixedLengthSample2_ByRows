@@ -1,0 +1,32 @@
+[
+	{
+		"destination_country": "US",
+		"events": [
+			{
+				"date": "2019-08-26T12:47:04-05:00",
+				"location": {
+					"city": "WEWAHITCHKA",
+					"state": "FL",
+					"zip": "32465"
+				}
+			}
+		],
+		"guaranteed_delivery_date": "2019-08-27T00:00:00",
+		"tracking_number": "100000103732"
+	},
+	{
+		"destination_country": "US",
+		"events": [
+			{
+				"date": "2019-08-26T12:47:04-05:00",
+				"location": {
+					"city": "MEXICO BEACH",
+					"state": "FL",
+					"zip": "32456"
+				}
+			}
+		],
+		"guaranteed_delivery_date": "2019-08-27T00:00:00",
+		"tracking_number": "W938003272"
+	}
+]

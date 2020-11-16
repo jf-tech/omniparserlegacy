@@ -1,0 +1,87 @@
+{
+    "parser_settings": {
+        "version": "omni.2.0",
+        "file_format_type": "fixed-length"
+    },
+    "file_declaration": {
+        "envelopes" : [
+            {
+                "columns": [
+                    { "name": "DATE", "start_pos": 1, "length": 24 },
+                    { "name": "HIGH_TEMP_C", "start_pos": 26, "length": 4 },
+                    { "name": "LOW_TEMP_F", "start_pos": 31, "length": 4 },
+                    { "name": "WIND_DIR", "start_pos": 36, "length": 2 },
+                    { "name": "WIND_SPEED_KMH", "start_pos": 9, "length": 2 },
+                    { "name": "LAT", "start_pos": 42, "length": 8 },
+                    { "name": "LONG", "start_pos": 51, "length": 8 }
+                ]
+            }
+        ]
+    },
+    "transform_declarations": {
+        "FINAL_OUTPUT": { "xpath": ".[DATE != 'DO NOT PROCESS']", "object": {
+            "weather_record": { "object": {
+                "date": { "custom_func": {
+                    "name": "dateTimeToRfc3339",
+                    "args": [
+                        { "xpath": "DATE" },
+                        { "const": "", "_comment": "input timezone" },
+                        { "const": "", "_comment": "output timezone" }
+                    ]
+                }},
+                "high_temperature_fahrenheit": { "xpath": "HIGH_TEMP_C", "template": "template_c_to_f" },
+                "low_temperature_fahrenheit": {
+                    "custom_func": {
+                        "name": "floor",
+                        "args": [
+                            { "xpath": "LOW_TEMP_F" },
+                            { "const": "1", "_comment": "decimal places" }
+                        ]
+                    },
+                    "result_type": "float"
+                },
+                "wind": { "custom_func": {
+                    "name": "concat",
+                    "args": [
+                        { "xpath": "WIND_DIR" },
+                        { "const": " ", "keep_leading_trailing_space": true },
+                        {
+                            "custom_func": {
+                                "name": "floor",
+                                "args": [
+                                    { "custom_func": {
+                                        "name": "eval",
+                                        "args": [
+                                            { "const": "[kmh] / 0.621371" },
+                                            { "const": "kmh:float" }, { "xpath": "WIND_SPEED_KMH" }
+                                        ]
+                                    }},
+                                    { "const": "2", "_comment": "decimal places" }
+                                ]
+                            }
+                        },
+                        { "const": " mph", "keep_leading_trailing_space": true }
+                    ]
+                }},
+                "latitude": { "xpath": "LAT", "result_type": "float" },
+                "longitude": { "xpath": "LONG", "result_type": "float" }
+            }}
+        }},
+        "template_c_to_f": {
+            "custom_func": {
+                "name": "floor",
+                "args": [
+                    { "custom_func": {
+                        "name": "eval",
+                        "args": [
+                            { "const": "[temp_c] * 9 / 5 + 32" },
+                            { "const": "temp_c:float" }, { "xpath": "." }
+                        ]
+                    }},
+                    { "const": "1", "_comment": "decimal places" }
+                ]
+            },
+            "result_type": "float"
+        }
+    }
+}
