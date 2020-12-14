@@ -9,6 +9,8 @@ github.com/antchfx/xmlquery v1.3.1 h1:nIKWdtnhrXtj0/IRUAAw2I7TfpHUa3zMnHvNmPXFg+
 github.com/antchfx/xmlquery v1.3.1/go.mod h1:64w0Xesg2sTaawIdNqMB+7qaW/bSqkQm+ssPaCMWNnc=
 github.com/antchfx/xpath v1.1.10 h1:cJ0pOvEdN/WvYXxvRrzQH9x5QWKpzHacYO8qzCcDYAg=
 github.com/antchfx/xpath v1.1.10/go.mod h1:Yee4kTMuNiPYJ7nSNorELQMr1J33uOpXDMByNYhvtNk=
+github.com/antchfx/xpath v1.1.11 h1:WOFtK8TVAjLm3lbgqeP0arlHpvCEeTANeWZ/csPpJkQ=
+github.com/antchfx/xpath v1.1.11/go.mod h1:i54GszH55fYfBmoZXapTHN8T8tkcHfRgLyVwwqzXNcs=
 github.com/armon/consul-api v0.0.0-20180202201655-eb2c6b5be1b6/go.mod h1:grANhF5doyWs3UAsr3K4I6qtAmlQcZDesFNEHPZAzj8=
 github.com/beorn7/perks v0.0.0-20180321164747-3a771d992973/go.mod h1:Dwedo/Wpr24TaqPxmxbtue+5NUziq4I4S80YR8gNf3Q=
 github.com/beorn7/perks v1.0.0/go.mod h1:KWe93zE9D1o94FZ5RNwFwVgaQK1VOXiVxmqh+CedLV8=
@@ -65,12 +67,10 @@ github.com/hashicorp/golang-lru v0.5.4 h1:YDjusn29QI/Das2iO9M0BHnIbxPeyuCHsjMW+l
 github.com/hashicorp/golang-lru v0.5.4/go.mod h1:iADmTwqILo4mZ8BN3D2Q6+9jd8WM5uGBxy+E8yxSoD4=
 github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T20WEQ=
 github.com/inconshreveable/mousetrap v1.0.0/go.mod h1:PxqpIevigyE2G7u3NXJIT2ANytuPF1OarO4DADm73n8=
-github.com/jf-tech/go-corelib v0.0.11 h1:p5bBM1vf9O2Q//f9q2UyfpWdFUG93X/tgsmKFj/klaU=
-github.com/jf-tech/go-corelib v0.0.11/go.mod h1:0+Fejzd53JtexKE5VI8I06WiBNATLIURRJgPrv4Yysg=
 github.com/jf-tech/go-corelib v0.0.13 h1:4aDwS09bdfRb/loU6Va+kvqwNJq5irR5WjKVpzJxdag=
 github.com/jf-tech/go-corelib v0.0.13/go.mod h1:0+Fejzd53JtexKE5VI8I06WiBNATLIURRJgPrv4Yysg=
-github.com/jf-tech/omniparser v0.0.0-20201102042518-0ec9a3e42003 h1:G1h/Iu/At1Y5aUb7wffq9wk2RB+1i77vjNXL2YY2Ghg=
-github.com/jf-tech/omniparser v0.0.0-20201102042518-0ec9a3e42003/go.mod h1:6H9Kl9awKD9fc2va7z3Q2634YhfG0yZ/yeHDYSvAY40=
+github.com/jf-tech/omniparser v0.0.7 h1:SC92QMfLxPwaWQw+RDXR0cEV98t4Kv9y50+o3bTXp1A=
+github.com/jf-tech/omniparser v0.0.7/go.mod h1:cAusV5uMbyzinWugpCDa2NMWwwGT4vtQCNG3XjB8DRE=
 github.com/jonboulle/clockwork v0.1.0/go.mod h1:Ii8DK3G1RaLaWxj9trq07+26W01tbo22gdxWY5EU2bo=
 github.com/julienschmidt/httprouter v1.2.0/go.mod h1:SYymIcj16QtmaHHD7aYtjjsJG7VTCxuUUipMqKk8s4w=
 github.com/kisielk/errcheck v1.1.0/go.mod h1:EZBBE59ingxPouuu3KfxchcWSUPOHkagtvWXihfKN4Q=
