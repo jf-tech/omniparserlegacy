@@ -46,7 +46,7 @@ func TestIngester_Read_ReadFailure(t *testing.T) {
 	g := &ingester{
 		reader: &testReader{result: []*idr.Node{nil}, err: []error{errors.New("test failure")}},
 	}
-	b, err := g.Read()
+	_, b, err := g.Read()
 	assert.Error(t, err)
 	assert.Equal(t, "test failure", err.Error())
 	assert.Nil(t, b)
@@ -65,7 +65,7 @@ func TestIngester_Read_ParseNodeFailure(t *testing.T) {
 		finalOutputDecl: finalOutputDecl,
 		reader:          &testReader{result: []*idr.Node{ingesterTestNode}, err: []error{nil}},
 	}
-	b, err := g.Read()
+	_, b, err := g.Read()
 	assert.Error(t, err)
 	assert.True(t, errs.IsErrTransformFailed(err))
 	assert.True(t, g.IsContinuableError(err))
@@ -88,7 +88,7 @@ func TestIngester_Read_Success(t *testing.T) {
 		finalOutputDecl: finalOutputDecl,
 		reader:          &testReader{result: []*idr.Node{ingesterTestNode}, err: []error{nil}},
 	}
-	b, err := g.Read()
+	_, b, err := g.Read()
 	assert.NoError(t, err)
 	assert.Equal(t, "123", string(b))
 	assert.Equal(t, 1, g.reader.(*testReader).releaseCalled)
