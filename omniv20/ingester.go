@@ -19,20 +19,21 @@ type ingester struct {
 	reader          fileformat.FormatReader
 }
 
-func (g *ingester) Read() ([]byte, error) {
+func (g *ingester) Read() (interface{}, []byte, error) {
 	n, err := g.reader.Read()
 	if err != nil {
 		// Read() supposed to have already done CtxAwareErr error wrapping. So directly return.
-		return nil, err
+		return nil, nil, err
 	}
 	defer g.reader.Release(n)
 	result, err := transform.NewParseCtx(g.ctx, g.customFuncs).ParseNode(n, g.finalOutputDecl)
 	if err != nil {
 		// ParseNode() error not CtxAwareErr wrapped, so wrap it.
 		// Note errs.ErrorTransformFailed is a continuable error.
-		return nil, errs.ErrTransformFailed(g.fmtErrStr("fail to transform. err: %s", err.Error()))
+		return nil, nil, errs.ErrTransformFailed(g.fmtErrStr("fail to transform. err: %s", err.Error()))
 	}
-	return json.Marshal(result)
+	transformed, err := json.Marshal(result)
+	return nil, transformed, err
 }
 
 func (g *ingester) IsContinuableError(err error) bool {
