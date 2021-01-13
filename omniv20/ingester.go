@@ -6,6 +6,7 @@ import (
 
 	"github.com/jf-tech/omniparser/customfuncs"
 	"github.com/jf-tech/omniparser/errs"
+	"github.com/jf-tech/omniparser/schemahandler"
 	"github.com/jf-tech/omniparser/transformctx"
 
 	"github.com/jf-tech/omniparserlegacy/omniv20/fileformat"
@@ -19,7 +20,7 @@ type ingester struct {
 	reader          fileformat.FormatReader
 }
 
-func (g *ingester) Read() (interface{}, []byte, error) {
+func (g *ingester) Read() (schemahandler.RawRecord, []byte, error) {
 	n, err := g.reader.Read()
 	if err != nil {
 		// Read() supposed to have already done CtxAwareErr error wrapping. So directly return.
